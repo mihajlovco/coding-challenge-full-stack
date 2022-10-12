@@ -50,6 +50,10 @@ const UploadImageForm = () => {
     return imageData ? URL.createObjectURL(imageData) : defaultUploadImg;
   };
 
+  const handleOnUploadClick = () => {
+    // upload with GraphQL API
+  };
+
   return (
     <Container sx={mainContainerStyles}>
       <Stack spacing={2} direction="row">
@@ -82,7 +86,7 @@ const UploadImageForm = () => {
             )}
             {imageData && (
               <>
-                <Button variant="contained" component="label">
+                <Button variant="contained" component="label" onClick={() => handleOnUploadClick()}>
                   Upload
                 </Button>
                 <Button component="label" onClick={() => handleOnCancelClick()}>
