@@ -22,7 +22,8 @@ const ThumbnailItemEditDialog: React.FC = ({ item, onClose }: ThumbnailItemEditD
   };
 
   const handleConfirm = () => {
-    // update thumbnail
+    // NOTE: remove image with GraphQL API
+    onClose();
   };
 
   return (
@@ -30,7 +31,7 @@ const ThumbnailItemEditDialog: React.FC = ({ item, onClose }: ThumbnailItemEditD
       <DialogTitle>Edit image name</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          To change the image name please enter name in the input na confirm your change.
+          To change the image name, please enter text in the input field na confirm your change.
         </DialogContentText>
         <TextField
           autoFocus
