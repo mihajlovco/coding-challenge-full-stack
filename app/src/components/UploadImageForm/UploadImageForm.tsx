@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { MyContainer } from "./UploadImageForm.styles";
 import Box from "@mui/material/Box";
 import defaultUploadImg from "../../images/default-upload-img.png";
+import axios from "axios";
 
 const mainContainerStyles = {
   borderBottom: 1,
@@ -51,7 +52,23 @@ const UploadImageForm = () => {
   };
 
   const handleOnUploadClick = () => {
-    // upload with GraphQL API
+    // upload with API - separate API folder
+    const bodyFormData = new FormData();
+    bodyFormData.append("file", imageData);
+    axios({
+      method: "post",
+      url: "http://localhost:3000/upload",
+      data: bodyFormData,
+      headers: { enctype: "multipart/form-data" },
+    })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
   };
 
   return (
