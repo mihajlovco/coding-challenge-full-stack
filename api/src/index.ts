@@ -12,12 +12,7 @@ import multer from "multer";
 import { fileStorage } from "./config/multer.config";
 import cors from "cors";
 
-import {
-  saveImage,
-  saveOriginalImage,
-  imageNameToLower,
-  saveThumbnailImage,
-} from "./utils/file.storage.helpers";
+import { saveImage, saveOriginalImage, saveThumbnailImage } from "./utils/file.storage.helpers";
 
 const app = express();
 const port = 3000;

@@ -1,4 +1,6 @@
 import fs from "express";
+import { ImageSizeType } from "../models/ImageSizeType";
+import { ThumbnailImg } from "../../../app/src/types/Images";
 const path = require("path");
 const sharp = require("sharp");
 
@@ -34,4 +36,15 @@ export const saveThumbnailImage = async (
 
 export const imageNameToLower = (name: string): string => {
   return name.toLowerCase().replace(/ /g, "-");
+};
+
+export const imageUrlPath = (imageSizeType: ImageSizeType): string => {
+  switch (imageSizeType) {
+    case ImageSizeType.Original:
+      return "/image/";
+    case ImageSizeType.Thumbnail:
+      return "/thumbnail";
+    default:
+      return "";
+  }
 };
