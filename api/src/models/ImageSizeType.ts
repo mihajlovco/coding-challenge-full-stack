@@ -1,4 +1,4 @@
 export enum ImageSizeType {
-  Original,
-  Thumbnail,
+  Original = "original",
+  Thumbnail = "thumbnail",
 }

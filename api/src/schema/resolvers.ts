@@ -14,4 +14,14 @@ export const resolvers = {
       return imageRepo.filter(name);
     },
   },
+
+  Mutation: {
+    updateImage: (parent, args) => {
+      return imageRepo.update(args.input as Image);
+    },
+    deleteImage: (parent, args) => {
+      const { slug } = args.input;
+      return imageRepo.delete(slug);
+    },
+  },
 };
