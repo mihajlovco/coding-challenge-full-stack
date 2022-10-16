@@ -10,7 +10,7 @@ export const resolvers = {
       return imageRepo.getAll();
     },
     filterImages: (parent, args) => {
-      const name = args.name;
+      const name = args.input.name;
       return imageRepo.filter(name);
     },
   },

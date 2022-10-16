@@ -8,9 +8,13 @@ export const typeDefs = `#graphql
     thumbnailUrl: String
   }
 
+  input FilterImagesInput {
+    name: String!
+  }
+
   type Query {
     images: [Image],
-    filterImages(name: String): [Image]
+    filterImages(input: FilterImagesInput!): [Image]
   }
 
   # Mutation inputs
