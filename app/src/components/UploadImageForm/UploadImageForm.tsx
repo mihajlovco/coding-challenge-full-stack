@@ -60,9 +60,8 @@ const UploadImageForm = () => {
     bodyFormData.append("file", imageData);
     ImageGalleryApi.upload(bodyFormData)
       .then(function (response) {
+        setImageData(null);
         refetch();
-        //handle success
-        console.log(response);
       })
       .catch(function (response) {
         //handle error

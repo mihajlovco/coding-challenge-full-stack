@@ -27,14 +27,13 @@ const ThumbnailList: React.FC = ({ images }: ThumbnailListProps) => {
     <>
       {selectedThumbnail && EditAction.Edit === selectedThumbnail.action && (
         <ThumbnailItemEditDialog
-          image={selectedThumbnail.item}
+          image={selectedThumbnail.image}
           onClose={() => setSelectedThumbnail(null)}
         />
       )}
-
       {selectedThumbnail && EditAction.Remove === selectedThumbnail.action && (
         <ThumbnailItemRemoveDialog
-          item={selectedThumbnail.item}
+          image={selectedThumbnail.image}
           onClose={() => setSelectedThumbnail(null)}
         />
       )}
@@ -44,8 +43,12 @@ const ThumbnailList: React.FC = ({ images }: ThumbnailListProps) => {
             <ThumbnailListItem
               key={image.slug}
               data={image}
-              onEdit={(item) => setSelectedThumbnail({ item, action: EditAction.Edit })}
-              onRemove={(image) => setSelectedThumbnail({ item, action: EditAction.Remove })}
+              onEdit={(imageData) =>
+                setSelectedThumbnail({ image: imageData, action: EditAction.Edit })
+              }
+              onRemove={(imageData) =>
+                setSelectedThumbnail({ image: imageData, action: EditAction.Remove })
+              }
             />
           ))
         ) : (
