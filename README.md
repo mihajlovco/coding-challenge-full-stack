@@ -51,14 +51,17 @@ Good luck and have fun!
 Full preview of the app
 <img src="./app/src/images/readme-docs/webiny-app.png">
 
-**Image upload**:
+#### Image upload
+
 You can upload one image using the image form.
 
-**Edit and remove images**:
-<img src="./app/src/images/readme-docs/edit-remove.png">
-To edit or remove image click on the "more" icon located in the right bottom corner of the image.
+#### Edit and remove images
 
-**Image API**:
+To edit or remove image click on the "more" icon located in the right bottom corner of the image.
+<img src="./app/src/images/readme-docs/edit-remove.png">
+
+#### Image API
+
 Implemented one API image point to retrieve original image size or thumbnail
 
 Api point:
@@ -73,9 +76,11 @@ http://localhost:3000/image/7b07d4b4-9a31-4e2f-a80b-228add397d41.jpeg
 Thumbnail image
 http://localhost:3000/image/7b07d4b4-9a31-4e2f-a80b-228add397d41.jpeg?size=thumbnail
 
-**Search**
+#### Search
+
 Basic search filter by name is implemented
 <img src="./app/src/images/readme-docs/search.png">
 
-**Database info**
+#### Database info
+
 It's a simple typescript file with an array of images. Will not keep the data after the server restart.
