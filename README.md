@@ -54,7 +54,7 @@ Full preview of the app
 **Image upload**:
 You can upload one image using the image form.
 
-**Edit and remove images**
+**Edit and remove images**:
 <img src="./app/src/images/readme-docs/edit-remove.png">
 To edit or remove image click on the "more" icon located in the right bottom corner of the image.
 
