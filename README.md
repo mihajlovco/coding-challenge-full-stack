@@ -62,7 +62,7 @@ To edit or remove image click on the "more" icon located in the right bottom cor
 
 #### Image API
 
-Implemented one API image point to retrieve original image size or thumbnail
+Implemented one API image endpoint to retrieve the original image size or thumbnail.
 
 Api point:
 /image:slug
