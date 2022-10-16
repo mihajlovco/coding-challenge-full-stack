@@ -60,7 +60,7 @@ const ImageGalleryContainer: React.FC = () => {
   };
 
   return (
-    <Container sx={{ marginBottom: 10 }}>
+    <Container sx={{ marginBottom: 10, height: "100%" }}>
       <UploadImageForm />
       <SearchInput onChange={(value) => handleOnSearchChange(value)} />
       <Box sx={{ margin: "10px 0" }}>

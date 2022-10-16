@@ -37,7 +37,7 @@ const ThumbnailList: React.FC = ({ images }: ThumbnailListProps) => {
           onClose={() => setSelectedThumbnail(null)}
         />
       )}
-      <ImageList rowHeight={200} cols={hasImages ? 4 : 1}>
+      <ImageList cols={hasImages ? 4 : 1}>
         {hasImages ? (
           images.map((image: ImageModel) => (
             <ThumbnailListItem
