@@ -8,7 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Alert from "@mui/material/Alert";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ImageGalleryContext } from "../../../contexts/ImageGalleryContext";
-import { useDeleteGalleryImage } from "../../../hooks/mutationDeleteGalleryImage";
+import { useDeleteGalleryImage } from "../../../hooks/useDeleteGalleryImage";
 import ImageModel from "../../../graphql/types/ImageModel";
 
 type ThumbnailItemRemoveDialogProps = {
@@ -31,7 +31,6 @@ const ThumbnailItemRemoveDialog: React.FC = ({
   }, [data, loading]);
 
   const handleConfirm = () => {
-    // NOTE: update thumbnail name with GraphQL API
     deleteImage(image.slug);
   };
 
