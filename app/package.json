@@ -23,6 +23,7 @@
     "express": "^4.17.3",
     "graphql": "^16.6.0",
     "html-webpack-plugin": "^5.5.0",
+    "lodash.debounce": "^4.0.8",
     "markdown-to-jsx": "^7.1.6",
     "nodemon": "^2.0.15",
     "raw-loader": "^4.0.2",
