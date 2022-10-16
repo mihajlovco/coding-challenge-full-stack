@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 import { ImageGalleryRepository } from "../repository/Context/ImageGalleryRepository";
 import { getImageDiskPath } from "../utils/file.storage.helpers";
+import { validateUploadImageSize } from "../utils/file.upload.helpers";
 
 const galleryRepo = new ImageGalleryRepository();
 
@@ -25,8 +26,12 @@ export const uploadImage = async (req, res) => {
     res.status(401).json({ error: "Please provide an image" });
   }
 
-  const { buffer, originalname, mimetype } = req.file;
   try {
+    const { buffer, originalname, mimetype } = req.file;
+    const isValid = await validateUploadImageSize(buffer);
+    if (!isValid) {
+      res.status(500).json({ error: "Image size is not valid" });
+    }
     const imageModel = await galleryRepo.create(buffer, originalname, mimetype);
     res.status(200).json(imageModel);
   } catch (error) {
