@@ -49,13 +49,13 @@ Good luck and have fun!
 ## App documentation
 
 Full preview of the app
-<img src="./app/src/images/readme-docs/webiny-app.png" width="130">
+<img src="./app/src/images/readme-docs/webiny-app.png">
 
 **Image upload**:
 You can upload one image using the image form.
 
 **Edit and remove images**
-<img src="./app/src/images/readme-docs/edit-remove.png" width="130">
+<img src="./app/src/images/readme-docs/edit-remove.png">
 To edit or remove image click on the "more" icon located in the right bottom corner of the image.
 
 **Image API**:
@@ -75,7 +75,7 @@ http://localhost:3000/image/7b07d4b4-9a31-4e2f-a80b-228add397d41.jpeg?size=thumb
 
 **Search**
 Basic search filter by name is implemented
-<img src="./app/src/images/readme-docs/search.png" width="130">
+<img src="./app/src/images/readme-docs/search.png">
 
 **Database info**
 It's a simple typescript file with an array of images. Will not keep the data after the server restart.
