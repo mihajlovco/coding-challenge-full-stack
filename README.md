@@ -4,7 +4,6 @@ Welcome to Webiny Coding Challenge for the Full-Stack Developer role!
 
 This repo provides everything you need to immediately start working on the problem at hand. The goal of this task is not to intimidate you with weird algorithm tasks, but to see how you approach a real world problem, which resembles things we work with at Webiny, on a daily basis.
 
-
 ## Setup
 
 Out of the box, you get a React app setup, with `webpack`, Typescript, and React Fast Refresh for better DX. You also get the most basic `express` app setup, with `nodemon` and `ts-node`. Feel free to add more utilities and tweak the configs to match your normal workflow.
@@ -46,3 +45,37 @@ These are optional features, it would be great if you managed to tackle any of t
 Good luck and have fun!
 
 <img src="https://raw.githubusercontent.com/webiny/webiny-js/69590bb13945dac9ecb19a058536b8cd1ec793b3/static/webiny-logo.svg" width="130">
+
+## App documentation
+
+Full preview of the app
+<img src="./app/src/images/readme-docs/webiny-app.png" width="130">
+
+**Image upload**:
+You can upload one image using the image form.
+
+**Edit and remove images**
+<img src="./app/src/images/readme-docs/edit-remove.png" width="130">
+To edit or remove image click on the "more" icon located in the right bottom corner of the image.
+
+**Image API**:
+Implemented one API image point to retrieve original image size or thumbnail
+
+Api point:
+/image:slug
+
+to retrieve the thumbnail we can specify query parameter "size=thumbnail"
+
+Example:
+Original image
+http://localhost:3000/image/7b07d4b4-9a31-4e2f-a80b-228add397d41.jpeg
+
+Thumbnail image
+http://localhost:3000/image/7b07d4b4-9a31-4e2f-a80b-228add397d41.jpeg?size=thumbnail
+
+**Search**
+Basic search filter by name is implemented
+<img src="./app/src/images/readme-docs/search.png" width="130">
+
+**Database info**
+It's a simple typescript file with an array of images. Will not keep the data after the server restart.
