@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
+import axios from "axios";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { MyContainer } from "./UploadImageForm.styles";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import { MyContainer } from "./UploadImageForm.styles";
 import defaultUploadImg from "../../images/default-upload-img.png";
-import axios from "axios";
 import { ImageGalleryApi } from "../../api/ImageGalleryApi";
 import { ImageGalleryContext } from "../../contexts/ImageGalleryContext";
 
@@ -40,6 +41,7 @@ const thumbnailImgStyles = {
 
 const UploadImageForm = () => {
   const [imageData, setImageData] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const { refetch } = useContext(ImageGalleryContext);
 
   const handleOnImageSelect = (e) => {
@@ -47,6 +49,9 @@ const UploadImageForm = () => {
   };
 
   const handleOnCancelClick = () => {
+    if (errorMsg) {
+      setErrorMsg(null);
+    }
     setImageData(null);
   };
 
@@ -55,7 +60,9 @@ const UploadImageForm = () => {
   };
 
   const handleOnUploadClick = async () => {
-    // upload with API - separate API folder
+    if (errorMsg) {
+      setErrorMsg(null);
+    }
     const bodyFormData = new FormData();
     bodyFormData.append("file", imageData);
     ImageGalleryApi.upload(bodyFormData)
@@ -64,8 +71,7 @@ const UploadImageForm = () => {
         refetch();
       })
       .catch(function (response) {
-        //handle error
-        console.log(response);
+        setErrorMsg("Please check the maximum file limit and image format in description.");
       });
   };
 
@@ -84,10 +90,14 @@ const UploadImageForm = () => {
         <Box>
           <Typography variant="h5">Upload image</Typography>
           <ul>
-            <li>100x100 or higher recommended. Max 5MB</li>
-            <li>Supported image files: png, jpg</li>
+            <li>300x300 or higher recommended. Max upload size is 5MB.</li>
+            <li>Supported image files: png, jpg and jpeg.</li>
           </ul>
-          <div></div>
+          {errorMsg && (
+            <Alert sx={{ marginBottom: 3 }} severity="error">
+              {errorMsg}
+            </Alert>
+          )}
           <Stack spacing={2} direction="row">
             {!imageData && (
               <Button variant="contained" component="label">
