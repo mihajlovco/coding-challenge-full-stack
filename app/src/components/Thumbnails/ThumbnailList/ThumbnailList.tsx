@@ -1,27 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageList from "@mui/material/ImageList";
-import useThumbnails from "../../hooks/useThumbnails";
 import { ThumbnailImg } from "../../types/Images";
 import { ThumbnailListItem } from "../ThumbnailListItem/ThumbnailListItem";
 import ThumbnailItemEditDialog from "../ThumbnailItemEditDialog/ThumbnailItemEditDialog";
 import ThumbnailItemRemoveDialog from "../ThumbnailItemRemoveDialog/ThumbnailItemRemoveDialog";
+import { useImageGallery } from "../../hooks/useImageGallery";
+import ImageModel from "../../../graphql/types/ImageModel";
 
 const enum EditAction {
   Edit,
   Remove,
 }
 
-const ThumbnailList: React.FC = () => {
-  const { data } = useThumbnails();
+type ThumbnailListProps = {
+  images: ImageModel[];
+};
+
+const ThumbnailList: React.FC = ({ images }: ThumbnailListProps) => {
   const [selectedThumbnail, setSelectedThumbnail] = useState<{
-    item: ThumbnailImg;
+    item: ImageModel;
     action: EditAction;
   } | null>(null);
+
+  const hasImages = !!images?.length;
   return (
     <>
       {selectedThumbnail && EditAction.Edit === selectedThumbnail.action && (
         <ThumbnailItemEditDialog
-          item={selectedThumbnail.item}
+          image={selectedThumbnail.item}
           onClose={() => setSelectedThumbnail(null)}
         />
       )}
@@ -32,15 +38,19 @@ const ThumbnailList: React.FC = () => {
           onClose={() => setSelectedThumbnail(null)}
         />
       )}
-      <ImageList rowHeight={200} cols={4}>
-        {data.map((item: ThumbnailImg) => (
-          <ThumbnailListItem
-            key={item.url}
-            data={item}
-            onEdit={(item) => setSelectedThumbnail({ item, action: EditAction.Edit })}
-            onRemove={(item) => setSelectedThumbnail({ item, action: EditAction.Remove })}
-          />
-        ))}
+      <ImageList rowHeight={200} cols={hasImages ? 4 : 1}>
+        {hasImages ? (
+          images.map((image: ImageModel) => (
+            <ThumbnailListItem
+              key={image.slug}
+              data={image}
+              onEdit={(item) => setSelectedThumbnail({ item, action: EditAction.Edit })}
+              onRemove={(image) => setSelectedThumbnail({ item, action: EditAction.Remove })}
+            />
+          ))
+        ) : (
+          <div>Image gallery is empty, please upload image.</div>
+        )}
       </ImageList>
     </>
   );

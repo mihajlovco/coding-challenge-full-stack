@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -7,6 +7,8 @@ import { MyContainer } from "./UploadImageForm.styles";
 import Box from "@mui/material/Box";
 import defaultUploadImg from "../../images/default-upload-img.png";
 import axios from "axios";
+import { ImageGalleryApi } from "../../api/ImageGalleryApi";
+import { ImageGalleryContext } from "../../contexts/ImageGalleryContext";
 
 const mainContainerStyles = {
   borderBottom: 1,
@@ -38,6 +40,7 @@ const thumbnailImgStyles = {
 
 const UploadImageForm = () => {
   const [imageData, setImageData] = useState(null);
+  const { refetch } = useContext(ImageGalleryContext);
 
   const handleOnImageSelect = (e) => {
     setImageData(e.target.files[0]);
@@ -51,17 +54,13 @@ const UploadImageForm = () => {
     return imageData ? URL.createObjectURL(imageData) : defaultUploadImg;
   };
 
-  const handleOnUploadClick = () => {
+  const handleOnUploadClick = async () => {
     // upload with API - separate API folder
     const bodyFormData = new FormData();
     bodyFormData.append("file", imageData);
-    axios({
-      method: "post",
-      url: "http://localhost:3000/upload",
-      data: bodyFormData,
-      headers: { enctype: "multipart/form-data" },
-    })
+    ImageGalleryApi.upload(bodyFormData)
       .then(function (response) {
+        refetch();
         //handle success
         console.log(response);
       })
@@ -89,6 +88,7 @@ const UploadImageForm = () => {
             <li>100x100 or higher recommended. Max 5MB</li>
             <li>Supported image files: png, jpg</li>
           </ul>
+          <div></div>
           <Stack spacing={2} direction="row">
             {!imageData && (
               <Button variant="contained" component="label">

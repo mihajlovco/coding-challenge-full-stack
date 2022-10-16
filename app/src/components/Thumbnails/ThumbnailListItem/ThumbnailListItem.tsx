@@ -1,7 +1,6 @@
 import React from "react";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { ThumbnailImg } from "../../../types/Images";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import Menu from "@mui/material/Menu";
@@ -11,10 +10,11 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ImageModel from "../../../graphql/types/ImageModel";
 
 type ThumbnailItemMenuProps = {
-  onEdit: (data: ThumbnailImg) => void;
-  onRemove: (data: ThumbnailImg) => void;
+  onEdit: (data: ImageModel) => void;
+  onRemove: (data: ImageModel) => void;
 };
 
 export default function ThumbnailItemMenu({ onEdit, onRemove }: ThumbnailItemMenuProps) {
@@ -62,16 +62,16 @@ export default function ThumbnailItemMenu({ onEdit, onRemove }: ThumbnailItemMen
 }
 
 type ThumbnailListItemProps = {
-  data: ThumbnailImg;
-  onEdit: (data: ThumbnailImg) => void;
-  onRemove: (data: ThumbnailImg) => void;
+  data: ImageModel;
+  onEdit: (data: ImageModel) => void;
+  onRemove: (data: ImageModel) => void;
 };
 
 export const ThumbnailListItem: React.FC = (props: ThumbnailListItemProps) => {
   const { data, onEdit, onRemove } = props;
   return (
-    <ImageListItem key={data.url}>
-      <img src={`${data.url}?w=248&fit=crop&auto=format`} alt={data.name} loading="lazy" />
+    <ImageListItem key={data.thumbnailUrl}>
+      <img src={data.thumbnailUrl} alt={data.name} loading="lazy" />
       <ImageListItemBar
         title={data.name}
         actionIcon={
