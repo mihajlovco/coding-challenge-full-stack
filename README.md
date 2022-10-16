@@ -64,11 +64,6 @@ To edit or remove image click on the "more" icon located in the right bottom cor
 
 Implemented one API image endpoint to retrieve the original image size or thumbnail.
 
-Api point:
-/image:slug
-
-to retrieve the thumbnail we can specify query parameter "size=thumbnail"
-
 Example:
 Original image
 http://localhost:3000/image/7b07d4b4-9a31-4e2f-a80b-228add397d41.jpeg
